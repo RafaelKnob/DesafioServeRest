@@ -14,8 +14,8 @@ public class CadastrarUsuarioNovoTest {
         basePath = "/usuarios";
 
         String requestBody = "{\n" +
-                "  \"nome\": \"Rafa3 Teste\",\n" +
-                "  \"email\": \"rafa3@qa.com\",\n" +
+                "  \"nome\": \"Rafa2 Teste\",\n" +
+                "  \"email\": \"rafa2@qa.com\",\n" +
                 "  \"password\": \"teste\",\n" +
                 "  \"administrador\": \"true\"\n" +
                 "}";

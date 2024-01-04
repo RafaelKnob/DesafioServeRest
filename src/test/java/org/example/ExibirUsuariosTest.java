@@ -1,13 +1,12 @@
 package org.example;
 
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class UsuariosTest {
+public class ExibirUsuariosTest {
 
 
 
