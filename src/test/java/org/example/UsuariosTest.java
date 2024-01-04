@@ -1,23 +1,31 @@
 package org.example;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import org.junit.jupiter.api.DisplayName;
 import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.*;
 
 public class UsuariosTest {
 
-    private static final String BASE_URL = "https://api.serverest.dev";
-    private static final String USUARIOS_ENDPOINT = "/usuarios";
+
 
     @Test
+    @DisplayName("")
     public void testGetUsuarios() {
-        RestAssured
-                .given()
-                .baseUri(BASE_URL)
+
+        baseURI = ("https://serverest.dev");
+        basePath = "";
+
+                String token = given()
+                    .contentType(ContentType.JSON)
                 .when()
-                .get(USUARIOS_ENDPOINT)
+                    .get("/usuarios")
                 .then()
                 .statusCode(200)
                 .extract().response()
                 .prettyPrint();
+        System.out.println(token);
     }
 }
