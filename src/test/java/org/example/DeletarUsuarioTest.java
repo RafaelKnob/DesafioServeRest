@@ -12,7 +12,7 @@ public class DeletarUsuarioTest {
         baseURI = ("https://serverest.dev");
         basePath = "";
 
-        String codigoUsuario = "886nCnQfiGHkE8v9";
+        String codigoUsuario = "0W85oRYaJYCtgKrs";
 
          given()
                  .contentType(ContentType.JSON)

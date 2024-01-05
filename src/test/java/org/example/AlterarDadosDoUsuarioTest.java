@@ -4,17 +4,21 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 
-public class CadastrarUsuarioNovoTest {
+public class AlterarDadosDoUsuarioTest {
 
     @Test
-    public void testCadastrarNovoUsuario() {
+    public void testAlterarDadosDoUsuarioComSucesso() {
 
         baseURI = "https://serverest.dev";
         basePath = "/usuarios";
 
+        // Defina o ID do usuário que você deseja alterar
+        String userId = "0W85oRYaJYCtgKrs";
+
         String requestBody = "{\n" +
-                "  \"nome\": \"NOVO TESTE5\",\n" +
+                "  \"nome\": \"NOVO_EDITADO TESTE5\",\n" +
                 "  \"email\": \"teste5@qa.com\",\n" +
                 "  \"password\": \"teste\",\n" +
                 "  \"administrador\": \"true\"\n" +
@@ -22,12 +26,13 @@ public class CadastrarUsuarioNovoTest {
 
         given()
                 .contentType(ContentType.JSON)
+                .pathParam("_id", userId)
                 .body(requestBody)
                 .when()
-                .post()
+                .put("/{_id}")
                 .then()
-                .statusCode(201); // Código 201 indica que o usuário foi criado com sucesso
-
+                .log().all()
+                .statusCode(200)  // Modificando a asserção para 200
+                .body("message", equalTo("Registro alterado com sucesso"));
     }
 }
-
