@@ -13,7 +13,7 @@ public class DeletarUsuarioTest {
         basePath = "";
 
         //. Deve ser informado o ID de um usuario cadastrado na base
-        String codigoUsuario = "20HVDen7p3h1oUG5";
+        String codigoUsuario = "0YS5A4HI1A4vazM2";
 
          given()
                  .contentType(ContentType.JSON)

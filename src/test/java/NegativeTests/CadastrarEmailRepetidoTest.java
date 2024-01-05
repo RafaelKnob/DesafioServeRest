@@ -1,21 +1,22 @@
-package org.TestCases;
+package NegativeTests;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.equalTo;
 
-public class CadastrarUsuarioNovoTest {
+public class CadastrarEmailRepetidoTest {
 
     @Test
-    public void testCadastrarNovoUsuario() {
+    public void CadastrarNovoUsuarioComEmailRepetido() {
 
         baseURI = "https://serverest.dev";
         basePath = "/usuarios";
 
         String requestBody = "{\n" +
                 "  \"nome\": \"Ken Masters\",\n" +
-                "  \"email\": \"kenbody100000@lift.com\",\n" +
+                "  \"email\": \"testealteracao9999@qa.com\",\n" +
                 "  \"password\": \"mali23hot\",\n" +
                 "  \"administrador\": \"true\"\n" +
                 "}";
@@ -26,7 +27,8 @@ public class CadastrarUsuarioNovoTest {
                 .when()
                 .post()
                 .then()
-                .statusCode(201); // Código 201 indica que o usuário foi criado com sucesso
+                .statusCode(400) // Código 400 indica que o E-mail já esta cadastrado
+                .body("message", equalTo("Este email já está sendo usado"));
 
     }
 }

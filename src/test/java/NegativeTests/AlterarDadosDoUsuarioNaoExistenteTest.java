@@ -15,11 +15,11 @@ public class AlterarDadosDoUsuarioNaoExistenteTest {
         basePath = "/usuarios";
 
         // Defina o ID do usuário que você deseja alterar, Neste caso deve ser fornecido um ID que não esta incluido na base
-        String userId = "AlteracaoNovo2Usuario";
+        String userId = "TESTESTESTE";
 
         String requestBody = "{\n" +
                 "  \"nome\": \"NOVO_CAD2 TESTE5\",\n" +
-                "  \"email\": \"testealteracao2@qa.com\",\n" +
+                "  \"email\": \"testealteracao9999@qa.com\",\n" +
                 "  \"password\": \"teste\",\n" +
                 "  \"administrador\": \"true\"\n" +
                 "}";

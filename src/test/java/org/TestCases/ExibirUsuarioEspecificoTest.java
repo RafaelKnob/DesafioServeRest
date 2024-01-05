@@ -9,12 +9,11 @@ public class ExibirUsuarioEspecificoTest {
 
     @Test
     public void testExibirUsuarioEspecifico() {
-
         baseURI = "https://serverest.dev";
         basePath = "/usuarios";
 
-        // Defina o ID do usuário que você deseja exibir
-        String userId = "0YS5A4HI1A4vazM2";
+        // Defina o ID do usuário que você deseja exibir - O ID deve estar cadastrado na base para que não retorne erro
+        String userId = "0JxSDpG1XSVWL84p";
 
         given()
                 .contentType(ContentType.JSON)

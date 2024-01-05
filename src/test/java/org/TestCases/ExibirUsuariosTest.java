@@ -8,19 +8,16 @@ import static io.restassured.RestAssured.*;
 
 public class ExibirUsuariosTest {
 
-
-
     @Test
     @DisplayName("")
     public void testGetUsuarios() {
-
-        baseURI = ("https://serverest.dev");
+        baseURI = "https://serverest.dev";
         basePath = "";
 
-                String token = given()
-                    .contentType(ContentType.JSON)
+        String token = given()
+                .contentType(ContentType.JSON)
                 .when()
-                    .get("/usuarios")
+                .get("/usuarios")
                 .then()
                 .statusCode(200)
                 .extract().response()

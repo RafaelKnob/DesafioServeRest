@@ -15,10 +15,10 @@ public class AlterarDadosDoUsuarioTest {
         basePath = "/usuarios";
 
         // Defina o ID do usuário que você deseja alterar
-        String userId = "0W85oRYaJYCtgKrs";
+        String userId = "0GAHJFyspFWU1muQ";
 
         String requestBody = "{\n" +
-                "  \"nome\": \"NOVO_EDITADO TESTE5\",\n" +
+                "  \"nome\": \"YY editado\",\n" +
                 "  \"email\": \"teste5@qa.com\",\n" +
                 "  \"password\": \"teste\",\n" +
                 "  \"administrador\": \"true\"\n" +
