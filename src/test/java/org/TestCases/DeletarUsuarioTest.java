@@ -12,7 +12,8 @@ public class DeletarUsuarioTest {
         baseURI = ("https://serverest.dev");
         basePath = "";
 
-        String codigoUsuario = "02FUeDIJe6R785B9";
+        //. Deve ser informado o ID de um usuario cadastrado na base
+        String codigoUsuario = "20HVDen7p3h1oUG5";
 
          given()
                  .contentType(ContentType.JSON)
