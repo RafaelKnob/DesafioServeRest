@@ -1,4 +1,4 @@
-package org.example;
+package org.TestCases;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
@@ -12,7 +12,7 @@ public class DeletarUsuarioTest {
         baseURI = ("https://serverest.dev");
         basePath = "";
 
-        String codigoUsuario = "0W85oRYaJYCtgKrs";
+        String codigoUsuario = "02FUeDIJe6R785B9";
 
          given()
                  .contentType(ContentType.JSON)

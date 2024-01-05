@@ -1,4 +1,4 @@
-package org.example;
+package org.TestCases;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
