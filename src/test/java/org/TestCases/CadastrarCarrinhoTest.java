@@ -20,18 +20,17 @@ public class CadastrarCarrinhoTest {
         token = given()
                 .contentType(ContentType.JSON)
                 .body("{\n" +
-                        "  \"email\": \"fulano@qa.com\",\n" +
-                        "  \"password\": \"teste\"\n" +
+                        "  \"email\": \"kenbody1000000@lift.com\",\n" +
+                        "  \"password\": \"mali23hot\"\n" +
                         "}")
                 .when()
                     .post("/login")
                 .then()
-                .extract().path("authorization");  // Extrai o Token para passar para o carrinho
-                  //  .log().all().toString();
+                    .extract().path("authorization");  // Extrai o Token para passar para o carrinho
+                  //  .log().all().toString();  // Apeas exibe o Log, Não passa o token
                 System.out.println("token" + token);
 
 
-      // if (statusCode == 200) {
             System.out.println("Token: " + token);
 
             // Cadastra carrinho com o token fornecido
@@ -51,13 +50,6 @@ public class CadastrarCarrinhoTest {
              .then()
                     .log().all();
 
-
-           // System.out.println("Mensagem do Cadastro do Carrinho: " + mensagemCadastroCarrinho);
-       // } else if (statusCode == 401) {
-        //    System.out.println("Token expirado ou inválido. Realize o login novamente.");
-
-       // } else {
-       //     System.out.println("Erro desconhecido ao realizar o login. Código de Status: " + statusCode);
         }
     }
 

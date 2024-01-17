@@ -15,7 +15,7 @@ public class CadastrarUsuarioNovoTest {
 
         String requestBody = "{\n" +
                 "  \"nome\": \"Ken Masters\",\n" +
-                "  \"email\": \"kenbody100000@lift.com\",\n" +
+                "  \"email\": \"kenbody1000000@lift.com\",\n" +
                 "  \"password\": \"mali23hot\",\n" +
                 "  \"administrador\": \"true\"\n" +
                 "}";
@@ -27,6 +27,7 @@ public class CadastrarUsuarioNovoTest {
                 .post()
                 .then()
                 .statusCode(201); // Código 201 indica que o usuário foi criado com sucesso
+
 
     }
 }

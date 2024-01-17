@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ListarCarrinhosCadastradosTest {
+public class ListarTodosCarrinhosCadastradosTest {
 
     @Test
     public void testListarCarrinhos() {

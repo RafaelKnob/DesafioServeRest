@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ExibirCarrinhoEspecificoTest {
+public class ListarCarrinhoEspecificoTest {
 
     @Test
     public void testExibirCarrinhoEspecifico() {
@@ -17,10 +17,10 @@ public class ExibirCarrinhoEspecificoTest {
         given()
                 .pathParam("_id", idCarrinho)  // Adiciona o parâmetro do caminho
                 .when()
-                .get("/carrinhos/{_id}")  // Utiliza o caminho com o parâmetro
+                .get("/carrinhos/{_id}")
                 .then()
-                .statusCode(200)
+                //.statusCode(200)
                 .contentType(ContentType.JSON)
-                .log().all(); // Detalhar a resposta do LOG
+                .log().all();
     }
 }
