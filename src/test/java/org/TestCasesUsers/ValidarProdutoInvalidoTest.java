@@ -1,19 +1,16 @@
-package org.TestCases.carrinho;
+package org.TestCasesUsers;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ValidarProdutoNuloVazioTest {
+public class ValidarProdutoInvalidoTest {
 
     @Test
     public void testCadastrarUsuarioEValidarQuantidadeItens() {
         // Cria um novo usuário
         String token = cadastrarNovoUsuario();
-
-        // Realiza o login
-        realizarLoginEValidarQuantidadeItens(token);
 
         // Cadastra o carrinho com autenticação
         cadastrarCarrinhoComAutenticacao(token);
@@ -26,7 +23,7 @@ public class ValidarProdutoNuloVazioTest {
 
         String requestBody = "{\n" +
                 "  \"nome\": \"Teste Quantidade\",\n" +
-                "  \"email\": \"produtovazio1@qa.com\",\n" +
+                "  \"email\": \"produtoinvalido2@qa.com\",\n" +
                 "  \"password\": \"teste1\",\n" +
                 "  \"administrador\": \"true\"\n" +
                 "}";
@@ -55,22 +52,6 @@ public class ValidarProdutoNuloVazioTest {
         return realizarLogin();
     }
 
-    // Método para realizar o login e validar a quantidade de itens
-    private void realizarLoginEValidarQuantidadeItens(String token) {
-        baseURI = "https://serverest.dev";
-        basePath = "/seu-endpoint-relacionado-ao-carrinho";
-
-        // Aqui você adiciona lógica para interagir com o carrinho e validar a quantidade de itens
-        // Use o token obtido para autenticação nas requisições
-
-        // Exemplo de lógica para interagir com o carrinho e validar a quantidade de itens
-        // ...
-
-        // Aqui você faz as verificações necessárias
-        // Exemplo:
-        // assertEquals(quantidadeEsperada, quantidadeAtual);
-    }
-
     // Método para cadastrar o carrinho com autenticação
     private void cadastrarCarrinhoComAutenticacao(String token) {
         baseURI = "https://serverest.dev";
@@ -83,7 +64,7 @@ public class ValidarProdutoNuloVazioTest {
                 .body("{\n" +
                         "  \"produtos\": [\n" +
                         "    {\n" +
-                        "      \"idProduto\": \"\",\n" +
+                        "      \"idProduto\": \"Produto#Invalido\",\n" +
                         "      \"quantidade\": 1\n" +
                         "    }\n" +
                         "  ]\n" +
@@ -95,7 +76,7 @@ public class ValidarProdutoNuloVazioTest {
 
         // Adicione verificações adicionais conforme necessário
         if (statusCode == 400) {
-            System.out.println("Carrinho não pôde ser cadastrado: Algo deu errado, o que é esperado neste caso.");
+            System.out.println("Carrinho não pôde ser cadastrado: Produto invalido.");
         } else if (statusCode == 201) {
             System.out.println("Carrinho cadastrado com sucesso!");
         } else {
@@ -109,7 +90,7 @@ public class ValidarProdutoNuloVazioTest {
         basePath = "";
 
         // Dados do usuário para login
-        String email = "produtovazio1@qa.com";
+        String email = "produtoinvalido2@qa.com";
         String password = "teste1";
 
         // Realiza a requisição de login

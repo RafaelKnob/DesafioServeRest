@@ -1,4 +1,4 @@
-package org.TestCases.produtos;
+package produtos;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;

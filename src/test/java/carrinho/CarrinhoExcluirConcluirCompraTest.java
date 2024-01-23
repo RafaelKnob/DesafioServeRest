@@ -1,14 +1,16 @@
-package org.TestCases.carrinho;
+package carrinho;
 
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class CarrinhoExcluirCancelarCompraTest {
+public class CarrinhoExcluirConcluirCompraTest {
 
     @Test
-    public void testExcluirCarrinhoCancelarCompraComAutenticacao() {
+    @DisplayName("Teste de Exclusão de Carrinho ao Concluir Compra com Autenticação")
+    public void testExcluirCarrinhoConcluirCompraComAutenticacao() {
         baseURI = "https://serverest.dev";
         basePath = "";
 
@@ -26,11 +28,11 @@ public class CarrinhoExcluirCancelarCompraTest {
 
         System.out.println("Token: " + token);
 
-        // Conclui a compra e cancela o carrinho
+        // Conclui a compra e exclui o carrinho
         given()
                 .header("Authorization", token)
                 .when()
-                .delete("/carrinhos/cancelar-compra")
+                .delete("/carrinhos/concluir-compra")
                 .then()
                 .log().all();
     }

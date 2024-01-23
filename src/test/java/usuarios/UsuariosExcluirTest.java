@@ -1,4 +1,4 @@
-package org.TestCases.usuarios;
+package usuarios;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;

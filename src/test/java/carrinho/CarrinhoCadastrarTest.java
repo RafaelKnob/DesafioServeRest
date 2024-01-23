@@ -1,4 +1,4 @@
-package org.TestCases.carrinho;
+package carrinho;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
