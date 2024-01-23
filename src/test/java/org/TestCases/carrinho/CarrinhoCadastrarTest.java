@@ -1,13 +1,12 @@
-package org.TestCases;
+package org.TestCases.carrinho;
 
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class CadastrarCarrinhoTest {
+public class CarrinhoCadastrarTest {
 
     @Test
     @DisplayName("Teste de Cadastro de Carrinho com Autenticação")
@@ -20,7 +19,7 @@ public class CadastrarCarrinhoTest {
         token = given()
                 .contentType(ContentType.JSON)
                 .body("{\n" +
-                        "  \"email\": \"kenbody1000000@lift.com\",\n" +
+                        "  \"email\": \"kenbody10000000teste@lift.com\",\n" +
                         "  \"password\": \"mali23hot\"\n" +
                         "}")
                 .when()

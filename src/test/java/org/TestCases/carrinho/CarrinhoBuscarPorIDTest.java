@@ -1,18 +1,18 @@
-package org.TestCases;
+package org.TestCases.carrinho;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ListarCarrinhoEspecificoTest {
+public class CarrinhoBuscarPorIDTest {
 
     @Test
     public void testExibirCarrinhoEspecifico() {
         baseURI = "https://serverest.dev";
         basePath = "";
 
-        String idCarrinho = "qbMqntef4iTOwWfg";
+        String idCarrinho = "fwJzks2wWhsRHWct";
 
         given()
                 .pathParam("_id", idCarrinho)  // Adiciona o parâmetro do caminho

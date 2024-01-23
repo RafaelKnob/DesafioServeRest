@@ -1,4 +1,4 @@
-package org.TestCases;
+package org.TestCases.usuarios;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ExibirUsuariosTest {
+public class UsuariosListarTodosCadastradosTest {
 
     @Test
     @DisplayName("")

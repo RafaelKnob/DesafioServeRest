@@ -1,15 +1,13 @@
-package org.TestCases;
+package org.TestCases.carrinho;
 
 import io.restassured.http.ContentType;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ExcluirCarrinhoCancelarCompraTest {
+public class CarrinhoExcluirCancelarCompraTest {
 
     @Test
-    @DisplayName("Teste de Exclusão de Carrinho ao Cancelar Compra com Autenticação")
     public void testExcluirCarrinhoCancelarCompraComAutenticacao() {
         baseURI = "https://serverest.dev";
         basePath = "";

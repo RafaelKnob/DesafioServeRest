@@ -1,4 +1,4 @@
-package org.TestCases;
+package org.TestCases.usuarios;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class AlterarDadosDoUsuarioTest {
+public class UsuariosEditarTest {
 
     @Test
     public void testAlterarDadosDoUsuarioComSucesso() {

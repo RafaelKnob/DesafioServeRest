@@ -1,22 +1,19 @@
-package NegativeTests;
-
-
+package org.TestCases.usuarios;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ExibirUsuarioInvalido {
+public class UsuariosBuscarPorIDTest {
 
     @Test
     public void testExibirUsuarioEspecifico() {
-
         baseURI = "https://serverest.dev";
         basePath = "/usuarios";
 
-        // Defina o ID do usuário que você deseja exibir, Deve ser Informado um usuario que não esteja cadastrado na base
-        String userId = "UsuarioInvalido";
+        // Defina o ID do usuário que você deseja exibir - O ID deve estar cadastrado na base para que não retorne erro
+        String userId = "0JxSDpG1XSVWL84p";
 
         given()
                 .contentType(ContentType.JSON)
@@ -24,7 +21,7 @@ public class ExibirUsuarioInvalido {
                 .when()
                 .get("/{_id}")
                 .then()
-                .statusCode(400)
+                .statusCode(200) // Espera um status 200 para um usuário encontrado
                 .log().all();    // Exibe o log da resposta, pode ser removido se não for necessário
     }
 }

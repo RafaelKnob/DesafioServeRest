@@ -1,4 +1,4 @@
-package org.TestCases;
+package org.TestCases.carrinho;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ExcluirCarrinhoConcluirCompraTeste {
+public class CarrinhoExcluirConcluirCompraTest {
 
     @Test
     @DisplayName("Teste de Exclusão de Carrinho ao Concluir Compra com Autenticação")

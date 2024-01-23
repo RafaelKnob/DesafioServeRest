@@ -1,11 +1,11 @@
-package org.TestCases;
+package org.TestCases.carrinho;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class ListarTodosCarrinhosCadastradosTest {
+public class CarrinhoListarTodosCadastradosTest {
 
     @Test
     public void testListarCarrinhos() {

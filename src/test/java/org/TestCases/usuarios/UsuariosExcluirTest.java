@@ -1,11 +1,11 @@
-package org.TestCases;
+package org.TestCases.usuarios;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.*;
 
-public class DeletarUsuarioTest {
+public class UsuariosExcluirTest {
 
     @Test
     public void testDeletarUsuario() {
@@ -13,7 +13,7 @@ public class DeletarUsuarioTest {
         basePath = "";
 
         //. Deve ser informado o ID de um usuario cadastrado na base
-        String codigoUsuario = "0YS5A4HI1A4vazM2";
+        String codigoUsuario = "zSzQt9m93UNmuItp";
 
          given()
                  .contentType(ContentType.JSON)
