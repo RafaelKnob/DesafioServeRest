@@ -64,7 +64,7 @@ public class ValidarCarrinhoTest extends ValidarCarrinhoAction {
 
     @Test
     public void cadastrarCarrinhoComProdutoInvalido(){
-        Assert.assertEquals(cadastrarNovoUsuario("rafa204@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(cadastrarNovoUsuario("rafa20445@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
         Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
 
         response = cadastrarCarrinhoComAutenticacao(Token);
@@ -103,7 +103,7 @@ public class ValidarCarrinhoTest extends ValidarCarrinhoAction {
 
     @Test
     public void cadastrarCarrinhoComQuantidadeDoProdutoInsufiente(){
-        Assert.assertEquals(cadastrarNovoUsuario("rafa207@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(cadastrarNovoUsuario("rafa207hj@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
         Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
 
         response = cadastrarCarrinhoComAutenticacao(Token);
