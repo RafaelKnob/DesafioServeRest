@@ -1,113 +1,104 @@
 package org.TestCasesUsers;
 
-import io.restassured.http.ContentType;
+import Actions.ValidarCadastroCarrinhoComMesmoProdutoQuantidadeDiferenteAction;
+import io.restassured.module.jsv.JsonSchemaValidator;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import io.restassured.response.Response;
 
-import static io.restassured.RestAssured.*;
+import java.io.File;
 
-public class ValidarCadastroCarrinhoComMesmoProdutoQuantidadeDiferenteTest {
+
+public class ValidarCadastroCarrinhoComMesmoProdutoQuantidadeDiferenteTest extends ValidarCadastroCarrinhoComMesmoProdutoQuantidadeDiferenteAction {
+
+    Response response;
+
+
+    @Test
+    public void cadastrarCarrinhoComSucesso(){
+        response = cadastrarNovoUsuario("rafa200@teste.com", "123");
+        Assert.assertEquals(response.getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(cadastrarCarrinhoComSucesso(Token).getStatusCode(),201, "Carrinho cadastrado");
+    }
 
     @Test
     public void testCadastrarUsuarioEValidarQuantidadeItens() {
-        // Cria um novo usuário
-        String token = cadastrarNovoUsuario();
+        Assert.assertEquals(cadastrarNovoUsuario("rafa508@teste.com", "123").getStatusCode(), 201, "Não foi possível cadastrar o usuário.");
+        Assert.assertEquals(realizarLogin().getStatusCode(), 200, "API de login não retornou 200");
 
-        // Cadastra o carrinho com autenticação
-        cadastrarCarrinhoComAutenticacao(token);
+        response = cadastrarCarrinhoComAutenticacao(Token);
+
+
+        Assert.assertEquals(response.getStatusCode(), 400, "O carrinho foi cadastrado");
+        Assert.assertTrue(response.getBody().asString().contains("Não é permitido possuir produto duplicado"),"O body não esta retornando a mensagem correta");
+
+        response.then().body(JsonSchemaValidator.matchesJsonSchema(new File("src/test/java/Schemas/CadastroComSucessoSchemas.json")));
+
     }
 
-    // Método para cadastrar um novo usuário e obter o token
-    private String cadastrarNovoUsuario() {
-        baseURI = "https://serverest.dev";
-        basePath = "/usuarios";
+    @Test
+    public void cadastrarCarrinhoComMesmaQuantidade2(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa202@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(cadastrarCarrinhoComMesmaQuantidade(Token).getStatusCode(),400, "Carrinho cadastrado");
+    }
 
-        String requestBody = "{\n" +
-                "  \"nome\": \"Teste Quantidade\",\n" +
-                "  \"email\": \"quantidadediferentemesmoproduto@qa.com\",\n" +
-                "  \"password\": \"teste1\",\n" +
-                "  \"administrador\": \"true\"\n" +
-                "}";
+    @Test
+    public void cadastrarCarrinhoComQuantidadeNula2(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa203@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(cadastrarCarrinhoComQuantidadeNula(Token).getStatusCode(),400, "Carrinho cadastrado");
+    }
 
-        // Cadastra o novo usuário
-        int statusCode = given()
-                .contentType(ContentType.JSON)
-                .body(requestBody)
-                .when()
-                .post()
-                .then()
-                .extract().statusCode(); // Obtem o código de status
-
-        // Verifica o código de status e exibe mensagem adequada
-        if (statusCode == 201) {
-            System.out.println("Usuário cadastrado com sucesso!");
-        } else if (statusCode == 400) {
-            System.out.println("Erro ao cadastrar usuário: E-mail já cadastrado. Cadastre outro usuário/e-mail.");
-            // Faz o teste falhar explicitamente
-            throw new RuntimeException("Falha no teste: E-mail já cadastrado. Cadastre outro usuário.");
-        } else {
-            System.out.println("Erro inesperado ao cadastrar usuário. Código de status: " + statusCode);
-        }
-
-        // Realiza o login e retorna o token
-        return realizarLogin();
+    @Test
+    public void cadastrarCarrinhoComProdutoInvalido(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa204@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(produtoInvalido(Token).getStatusCode(),400, "Carrinho cadastrado");
     }
 
 
-    // Método para cadastrar o carrinho com autenticação
-    private void cadastrarCarrinhoComAutenticacao(String token) {
-        baseURI = "https://serverest.dev";
-        basePath = "/carrinhos";
-
-// Cadastra o carrinho com dois produtos iguais
-        int statusCode = given()
-                .contentType(ContentType.JSON)
-                .header("Authorization", token)
-                .body("{\n" +
-                        "  \"produtos\": [\n" +
-                        "    {\n" +
-                        "      \"idProduto\": \"BeeJh5lz3k6kSIzA\",\n" +
-                        "      \"quantidade\": 1\n" +
-                        "    },\n" +
-                        "    {\n" +
-                        "      \"idProduto\": \"BeeJh5lz3k6kSIzA\",\n" +
-                        "      \"quantidade\": 2\n" +
-                        "    }\n" +
-                        "  ]\n" +
-                        "}")
-                .when()
-                .post()
-                .then()
-                .extract().statusCode(); // Obtem o código de status
-
-        // Adicione verificações adicionais conforme necessário
-        if (statusCode == 400) {
-            System.out.println("Carrinho não pôde ser cadastrado: Algo deu errado, o mesmo produto não deve ser enviado mais de uma vez.");
-        } else if (statusCode == 201) {
-            System.out.println("Carrinho cadastrado com sucesso!");
-        } else {
-            System.out.println("Erro ao cadastrar carrinho: Código de status desconhecido - " + statusCode);
-        }
+    public void cadastrarCarrinhoComProdutoInvalidoProdutoValido(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa205@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(produtoInvalidoProdutoValido(Token).getStatusCode(),400, "Carrinho cadastrado");
     }
 
-    // Método para realizar o login e obter o token
-    private String realizarLogin() {
-        baseURI = "https://serverest.dev";
-        basePath = "";
-
-        // Dados do usuário para login
-        String email = "quantidadediferentemesmoproduto@qa.com";
-        String password = "teste1";
-
-        // Realiza a requisição de login
-        return given()
-                .contentType(ContentType.JSON)
-                .body("{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}")
-                .when()
-                .post("/login")
-                .then()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .extract()
-                .path("authorization");
+    @Test
+    public void cadastrarCarrinhoComProdutoNulo(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa400@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(produtoNulo(Token).getStatusCode(),400, "Carrinho cadastrado");
     }
+
+    @Test
+    public void cadastrarCarrinhoComQuantidadeDoProdutoInsufiente(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa207@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(produtoQuantidadeIndisponivel(Token).getStatusCode(),400, "Carrinho cadastrado");
+    }
+
+    @Test
+    public void cadastrarCarrinhoComQuantidadeDoProdutoNegativa(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa208@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(produtoQuantidadeNegativa(Token).getStatusCode(),400, "Carrinho cadastrado");
+    }
+
+    @Test
+    public void cadastrarCarrinhoComQuantidadeDoInvalida(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa209@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(produtoQuantidadeInvalida(Token).getStatusCode(),400, "Carrinho cadastrado");
+    }
+
+    @Test
+    public void cadastrarCarrinhoComProdutoVazio(){
+        Assert.assertEquals(cadastrarNovoUsuario("rafa210@teste.com", "123").getStatusCode(),201,"Não foi possivel cadastrar o usuario.");
+        Assert.assertEquals(realizarLogin().getStatusCode(),200, "API de login não retornou 200");
+        Assert.assertEquals(produtoVazio(Token).getStatusCode(),400, "Carrinho cadastrado");
+    }
+
+
 }
