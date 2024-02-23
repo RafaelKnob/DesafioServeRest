@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
 
-public class ValidarCadastroCarrinhoComMesmoProdutoQuantidadeDiferenteAction {
+public class ValidarCarrinhoAction {
 
     public static String Token = "";
      static String emailcadastrado = "";
